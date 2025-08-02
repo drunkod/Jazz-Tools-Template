@@ -1,0 +1,20 @@
+{
+  "name": "jazz-tools-template",
+  "version": "1.0.0",
+  "description": "Minimal Jazz-Tools project template",
+  "type": "module",
+  "scripts": {
+    "start-sync": "jazz-run sync-server --port 4200",
+    "start-server": "node src/server.js",
+    "start-client": "node src/client.js",
+    "test": "node tests/test-flow.js",
+    "create-account": "jazz-run account create"
+  },
+  "dependencies": {
+    "jazz-tools": "^0.16.1",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
