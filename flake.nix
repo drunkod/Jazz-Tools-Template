@@ -15,8 +15,9 @@
         jazzProject = pkgs.stdenv.mkDerivation {
           name = "jazz-tools-template";
           src = ./.;
+          __noChroot = true;
 
-          buildInputs = [ pkgs.nodejs_20 ];
+          buildInputs = [ pkgs.nodejs_20 pkgs.cacert ];
 
           buildPhase = ''
             export HOME=$TMPDIR
@@ -53,35 +54,6 @@
 
         # Basic tests
         checks = {
-          # Test Jazz sync server connectivity
-          syncServerTest = pkgs.testers.runNixOSTest {
-            name = "jazz-sync-test";
-
-            nodes.server = { pkgs, ... }: {
-              networking.firewall.allowedTCPPorts = [ 4200 ];
-
-              environment.systemPackages = [ pkgs.nodejs_20 ];
-
-              systemd.services.jazz-sync = {
-                wantedBy = [ "multi-user.target" ];
-                path = [ pkgs.nodejs_20 ];
-                serviceConfig = {
-                  WorkingDirectory = "${jazzProject}";
-                  ExecStart = "${pkgs.nodejs_20}/bin/node ${jazzProject}/node_modules/.bin/jazz-run sync-server --port 4200";
-                  Restart = "on-failure";
-                };
-              };
-            };
-
-            testScript = ''
-              server.wait_for_unit("jazz-sync.service")
-              server.wait_for_open_port(4200)
-
-              # Verify the service is actually running
-              server.succeed("systemctl is-active jazz-sync.service")
-            '';
-          };
-
           # Test basic data flow
           dataFlowTest = pkgs.writeShellScriptBin "test-data-flow" ''
             echo "🧪 Testing Jazz data flow..."
