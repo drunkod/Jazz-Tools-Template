@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "jazz-tools": "^0.16.1",
-    "ws": "^8.18.3"
+    "ws": "^8.18.3",
+    "jazz-run": "^0.16.3"
   },
   "devDependencies": {
     "dotenv": "^16.3.1"

@@ -18,22 +18,6 @@
         "type": "github"
       }
     },
-    "jazz-tools-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1754138276,
-        "narHash": "sha256-8xmVST2R73mKp4gA7e5mH4IiGl5Zd2L0g3Gb/1QjXCA=",
-        "owner": "garden-co",
-        "repo": "jazz",
-        "rev": "70bc48458eb4282efa83f760321ddb6598539596",
-        "type": "github"
-      },
-      "original": {
-        "owner": "garden-co",
-        "repo": "jazz",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1754028485,
@@ -53,7 +37,6 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "jazz-tools-src": "jazz-tools-src",
         "nixpkgs": "nixpkgs"
       }
     },
